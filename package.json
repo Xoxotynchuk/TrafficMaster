@@ -1,5 +1,6 @@
 {
   "name": "traffic-app",
+  "homepage": "https://xoxotynchuk.github.io/TrafficMaster/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

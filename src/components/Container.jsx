@@ -16,7 +16,7 @@ const Container = () => {
     <div className="App">
       <BrowserRouter>
           <Routes>
-            <Route path="/" element={<HomeScreen />} />
+            <Route basename="TrafficMaster" path="/" element={<HomeScreen />} />
             <Route path="/create-task" element={<CreateTaskScreen />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
