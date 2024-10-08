@@ -1,0 +1,19 @@
+:root {
+    --padding-big: 20px;
+    --padding-small: 10px;
+  
+    --gap-big: 30px;
+    --gap-small: 15px;
+  
+    --component-color: white;
+    --main-color: #7387EA;
+    --green-color: #43C97B;
+    --red-color: #FF5768;
+  
+    --border-radius-big: 30px;
+    --border-radius-small: 15px;
+    --border-solid-main: 1px solid white;
+  
+    --border-solid-accent-second: 2px solid #B9C3F5;
+    --border-solid-accent: 2px solid var(--main-color);
+  }

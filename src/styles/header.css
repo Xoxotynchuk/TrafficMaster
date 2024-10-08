@@ -1,0 +1,33 @@
+header {
+    position: sticky;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    height: 100px;
+}
+
+.header-wave__first {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+.header-wave__second {
+    position: absolute;
+    top: 0;
+}
+
+.header-main h1 {
+    position: relative;
+    color: white;
+}
+
+.header-main {
+    width: 350px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-big);
+    z-index: 5;
+}

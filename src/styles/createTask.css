@@ -1,0 +1,70 @@
+.create-task {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-big);
+}
+
+.create-task__progressbar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    /* display: flex;
+    justify-content: space-between; */
+    gap: var(--gap-small);
+    align-items: center;
+}
+.create-task__progressbar p {
+    white-space: none;
+}
+
+.create-task__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+}
+
+.create-task__links_list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+}
+
+.input-double {
+    display: flex;
+    gap: var(--gap-small);
+}
+
+
+.buttons-list button{
+    font-size: 14px;
+    color: var(--main-color);
+    padding: 0;
+}
+
+.create-task__countPF .buttons-list{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.create-task__timeStart .buttons-list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+
+.create-task__timeStart button{
+    font-size: 14px;
+    color: var(--main-color);
+}
+
+.create-task__timePause .buttons-list{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.create-task__countDay .buttons-list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
