@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.342ef0e2.css",
-    "main.js": "/static/js/main.e9902a95.js",
-    "static/js/453.16765921.chunk.js": "/static/js/453.16765921.chunk.js",
-    "static/media/Raleway-SemiBold.ttf": "/static/media/Raleway-SemiBold.bd43d9472ee0c9fbe785.ttf",
-    "static/media/Raleway-Medium.ttf": "/static/media/Raleway-Medium.0de5925709848b7e64c5.ttf",
-    "static/media/Raleway-Regular.ttf": "/static/media/Raleway-Regular.d9219d8a361ac3530c7e.ttf",
-    "static/media/Raleway-Bold.ttf": "/static/media/Raleway-Bold.8e546283422c830c02dc.ttf",
-    "index.html": "/index.html",
-    "main.342ef0e2.css.map": "/static/css/main.342ef0e2.css.map",
-    "main.e9902a95.js.map": "/static/js/main.e9902a95.js.map",
-    "453.16765921.chunk.js.map": "/static/js/453.16765921.chunk.js.map"
+    "main.css": "/TrafficMaster/static/css/main.f083ebc4.css",
+    "main.js": "/TrafficMaster/static/js/main.ea9ef3d0.js",
+    "static/js/453.16765921.chunk.js": "/TrafficMaster/static/js/453.16765921.chunk.js",
+    "static/media/Raleway-SemiBold.ttf": "/TrafficMaster/static/media/Raleway-SemiBold.bd43d9472ee0c9fbe785.ttf",
+    "static/media/Raleway-Medium.ttf": "/TrafficMaster/static/media/Raleway-Medium.0de5925709848b7e64c5.ttf",
+    "static/media/Raleway-Regular.ttf": "/TrafficMaster/static/media/Raleway-Regular.d9219d8a361ac3530c7e.ttf",
+    "static/media/Raleway-Bold.ttf": "/TrafficMaster/static/media/Raleway-Bold.8e546283422c830c02dc.ttf",
+    "index.html": "/TrafficMaster/index.html",
+    "main.f083ebc4.css.map": "/TrafficMaster/static/css/main.f083ebc4.css.map",
+    "main.ea9ef3d0.js.map": "/TrafficMaster/static/js/main.ea9ef3d0.js.map",
+    "453.16765921.chunk.js.map": "/TrafficMaster/static/js/453.16765921.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.342ef0e2.css",
-    "static/js/main.e9902a95.js"
+    "static/css/main.f083ebc4.css",
+    "static/js/main.ea9ef3d0.js"
   ]
 }
