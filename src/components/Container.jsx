@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 
 import Modal from "./modals/Modal";
 import { useContext } from "react";
@@ -14,16 +14,16 @@ const Container = () => {
     useContext(GlobalContext);
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter basename="TrafficMaster">
           <Routes>
-            <Route basename="TrafficMaster" path="/" element={<HomeScreen />} />
+            <Route path="/" element={<HomeScreen />} />
             <Route path="/create-task" element={<CreateTaskScreen />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
 
         <Modal isOpen={isModalOpen} content={modalContent} />
         <Alert isOpen={isAlertOpen} content={alertContent} />
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 };
