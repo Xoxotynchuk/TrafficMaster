@@ -56,6 +56,10 @@ label input {
   width: 100%;
 }
 
+input[type=time] {
+  width: 100%;
+}
+
 input {
   width: 100%;
   padding: var(--padding-small);
@@ -136,7 +140,7 @@ h3 {
     font-size: 28px;
   }
   h2 {
-    font-size: 20px;
+    font-size: 24px;
   }
   h3{
     font-size: 18px;
@@ -149,7 +153,7 @@ h3 {
   gap: var(--gap-big);
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 var(--padding-small) ;
+  padding: 30px var(--padding-small) var(--padding-small) var(--padding-small) ;
 }
 
 .component {

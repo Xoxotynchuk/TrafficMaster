@@ -1,18 +1,29 @@
 header {
     position: sticky;
+    top: 0;
     display: flex;
     /* align-items: center; */
     justify-content: center;
     height: 100px;
 }
 
-.header-wave__first {
+.header-wave__first svg, .header-wave__second svg{
+    width: 100%;
+}
+
+.header-wave__second {
+    z-index: -100;
+}
+
+.header-wave__first{
+    width: 100%;
     position: absolute;
     top: 0;
     z-index: 1;
 }
 
-.header-wave__second {
+.header-wave__second{
+    width: 100%;
     position: absolute;
     top: 0;
 }
@@ -29,5 +40,6 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: var(--gap-big);
+    padding: var(--padding-small);
     z-index: 5;
 }

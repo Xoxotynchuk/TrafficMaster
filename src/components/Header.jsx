@@ -21,7 +21,7 @@ function Header() {
             </Link>
         </div>
         <div className="header-wave__first">
-            <svg width="393" height="100" viewBox="0 0 393 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg preserveAspectRatio="none" width="393" height="100" viewBox="0 0 393 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 -107H403V88.9968L367.765 80.4796C331.391 71.6872 293.236 73.7735 258.037 86.4792L248.942 89.7623C223.045 99.1107 195.246 101.951 167.993 98.0326L49.5 80.9968L-31.5 76.5L0 -107Z" fill="url(#paint0_linear_42_1290)"/>
                 <defs>
                 <linearGradient id="paint0_linear_42_1290" x1="201.5" y1="-107" x2="201.5" y2="102" gradientUnits="userSpaceOnUse">
@@ -32,7 +32,7 @@ function Header() {
             </svg>
         </div>
         <div className="header-wave__second">
-            <svg width="393" height="125" viewBox="0 0 393 125" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg preserveAspectRatio="none" width="393" height="125" viewBox="0 0 393 125" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 -71H403V124.997L370.75 117.248L365.225 115.921C347.506 111.664 329.254 110.048 311.062 111.126L232.518 115.781C218.865 116.59 205.168 116.206 191.582 114.632L107.137 104.853C90.7561 102.956 74.2229 102.752 57.7999 104.245L0 109.5V-71Z" fill="url(#paint0_linear_42_1289)" fill-opacity="0.6"/>
                 <defs>
                 <linearGradient id="paint0_linear_42_1289" x1="201.5" y1="-71" x2="201.5" y2="138" gradientUnits="userSpaceOnUse">
