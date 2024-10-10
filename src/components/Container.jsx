@@ -14,7 +14,7 @@ const Container = () => {
     useContext(GlobalContext);
   return (
     <div className="App">
-      <HashRouter basename="TrafficMaster">
+      <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomeScreen />} />
             <Route path="/create-task" element={<CreateTaskScreen />} />
@@ -23,7 +23,7 @@ const Container = () => {
 
         <Modal isOpen={isModalOpen} content={modalContent} />
         <Alert isOpen={isAlertOpen} content={alertContent} />
-      </HashRouter>
+      </BrowserRouter>
     </div>
   );
 };
