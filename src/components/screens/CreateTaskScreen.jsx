@@ -175,112 +175,169 @@ function CreateTaskScreen() {
                     </div>
 
                 </div>
-                <form action="" className="component create-task">
+                <form action="" className="create-task">
                     {currentStep === 0 && (
-                        <div className="create-task__item create-task__links">
-                            <p>Вставьте ссылки на объявления (до 10)</p>
-                            <div className="create-task__links_list">
-                                <input type="text" placeholder="Ссылка" />
-                                {links.map((link, index) => (
-                                    <div id={index} className="input-double">
-                                        <input
-                                            type="text"
-                                            placeholder="Ссылка"
-                                            value={link}
-                                            onChange={(e) => handleLinkChange(index, e.target.value)}
-                                        />
-                                        <div className="button-square" onClick={() => handleRemoveLink(index)}>
-                                            <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M16 1.16667H12.1133L11.0028 0H5.45041L4.33993 1.16667H0.453247V3.5H16M1.56373 18.6667C1.56373 19.2855 1.79772 19.879 2.21423 20.3166C2.63074 20.7542 3.19566 21 3.78469 21H12.6685C13.2576 21 13.8225 20.7542 14.239 20.3166C14.6555 19.879 14.8895 19.2855 14.8895 18.6667V4.66667H1.56373V18.6667Z" fill="#FF5768" />
-                                            </svg>
+                        <div className="create-task__item">
+                            <div className="component create-task__item create-task__links">
+                                <p>Вставьте ссылки на объявления (до 10)</p>
+                                <div className="create-task__links_list">
+                                    <input type="text" placeholder="Ссылка" />
+                                    {links.map((link, index) => (
+                                        <div id={index} className="input-double">
+                                            <input
+                                                type="text"
+                                                placeholder="Ссылка"
+                                                value={link}
+                                                onChange={(e) => handleLinkChange(index, e.target.value)}
+                                            />
+                                            <div className="button-square" onClick={() => handleRemoveLink(index)}>
+                                                <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M16 1.16667H12.1133L11.0028 0H5.45041L4.33993 1.16667H0.453247V3.5H16M1.56373 18.6667C1.56373 19.2855 1.79772 19.879 2.21423 20.3166C2.63074 20.7542 3.19566 21 3.78469 21H12.6685C13.2576 21 13.8225 20.7542 14.239 20.3166C14.6555 19.879 14.8895 19.2855 14.8895 18.6667V4.66667H1.56373V18.6667Z" fill="#FF5768" />
+                                                </svg>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
-                                {/* <div className="input-double">
-                  <input type="text" placeholder="Ссылка" />
-                  <div className="button-square">
-                    <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M16 1.16667H12.1133L11.0028 0H5.45041L4.33993 1.16667H0.453247V3.5H16M1.56373 18.6667C1.56373 19.2855 1.79772 19.879 2.21423 20.3166C2.63074 20.7542 3.19566 21 3.78469 21H12.6685C13.2576 21 13.8225 20.7542 14.239 20.3166C14.6555 19.879 14.8895 19.2855 14.8895 18.6667V4.66667H1.56373V18.6667Z" fill="#FF5768" />
-                    </svg>
-                  </div>
-                </div> */}
+                                    ))}
+                                </div>
+                                {links.length <= 8 && (
+                                    <button name="addInput" onClick={handleAddLink}>
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14 6H10V2C10 1.46957 9.78929 0.960859 9.41421 0.585786C9.03914 0.210714 8.53043 0 8 0C7.46957 0 6.96086 0.210714 6.58579 0.585786C6.21071 0.960859 6 1.46957 6 2L6.071 6H2C1.46957 6 0.960859 6.21071 0.585786 6.58579C0.210714 6.96086 0 7.46957 0 8C0 8.53043 0.210714 9.03914 0.585786 9.41421C0.960859 9.78929 1.46957 10 2 10L6.071 9.929L6 14C6 14.5304 6.21071 15.0391 6.58579 15.4142C6.96086 15.7893 7.46957 16 8 16C8.53043 16 9.03914 15.7893 9.41421 15.4142C9.78929 15.0391 10 14.5304 10 14V9.929L14 10C14.5304 10 15.0391 9.78929 15.4142 9.41421C15.7893 9.03914 16 8.53043 16 8C16 7.46957 15.7893 6.96086 15.4142 6.58579C15.0391 6.21071 14.5304 6 14 6Z" fill="#7387EA" />
+                                        </svg>
+                                    </button>
+                                )}
                             </div>
-                            {links.length <= 8 && (
-                                <button name="addInput" onClick={handleAddLink}>
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M14 6H10V2C10 1.46957 9.78929 0.960859 9.41421 0.585786C9.03914 0.210714 8.53043 0 8 0C7.46957 0 6.96086 0.210714 6.58579 0.585786C6.21071 0.960859 6 1.46957 6 2L6.071 6H2C1.46957 6 0.960859 6.21071 0.585786 6.58579C0.210714 6.96086 0 7.46957 0 8C0 8.53043 0.210714 9.03914 0.585786 9.41421C0.960859 9.78929 1.46957 10 2 10L6.071 9.929L6 14C6 14.5304 6.21071 15.0391 6.58579 15.4142C6.96086 15.7893 7.46957 16 8 16C8.53043 16 9.03914 15.7893 9.41421 15.4142C9.78929 15.0391 10 14.5304 10 14V9.929L14 10C14.5304 10 15.0391 9.78929 15.4142 9.41421C15.7893 9.03914 16 8.53043 16 8C16 7.46957 15.7893 6.96086 15.4142 6.58579C15.0391 6.21071 14.5304 6 14 6Z" fill="#7387EA" />
-                                    </svg>
-                                </button>
-                            )}
+                            <button onClick={handleNextStep} className="button-default">Далее</button>
                         </div>
                     )}
 
                     {currentStep === 1 && (
-                        <div className="create-task__item create-task__countPF">
-                            <p>Укажите количество ПФ на объявление в день (до 100)</p>
-                            <input type="text" placeholder="Количество ПФ на объявление в день" value={pfCount}
-                                onChange={(e) => setPfCount(e.target.value)} />
-                            <div className="buttons-list">
-                                <button onClick={(e) => handlePfCountClick('30', e)}>30</button>
-                                <button onClick={(e) => handlePfCountClick('40', e)}>40</button>
-                                <button onClick={(e) => handlePfCountClick('50', e)}>50</button>
-                                <button onClick={(e) => handlePfCountClick('100', e)}>100</button>
+                        <div className="create-task__item">
+                            <div className="component create-task__item create-task__countPF">
+                                <p>Укажите количество ПФ на объявление в день (до 100)</p>
+                                <input type="text" placeholder="Количество ПФ на объявление в день" value={pfCount}
+                                    onChange={(e) => setPfCount(e.target.value)} />
+                                <div className="buttons-list">
+                                    <button onClick={(e) => handlePfCountClick('30', e)}>30</button>
+                                    <button onClick={(e) => handlePfCountClick('40', e)}>40</button>
+                                    <button onClick={(e) => handlePfCountClick('50', e)}>50</button>
+                                    <button onClick={(e) => handlePfCountClick('100', e)}>100</button>
+                                </div>
                             </div>
+                            <button onClick={handleNextStep} className="button-default">Далее</button>
                         </div>
                     )}
 
                     {currentStep === 2 && (
-                        <div className="create-task__item create-task__timeStart">
-                            <input type="time" placeholder="Время старта" value={timeStart}
-                                onChange={(e) => setTimeStart(e.target.value)} />
-                            <button onClick={(e) => handleTimeStart('currentTime', e)}>Сейчас</button>
-                            <div className="buttons-list">
-                                <button onClick={(e) => handleTimeStart('00:00', e)}>0:00</button>
-                                <button onClick={(e) => handleTimeStart('06:00', e)}>6:00</button>
-                                <button onClick={(e) => handleTimeStart('09:00', e)}>9:00</button>
-                                <button onClick={(e) => handleTimeStart('12:00', e)}>12:00</button>
-                                <button onClick={(e) => handleTimeStart('16:00', e)}>16:00</button>
-                                <button onClick={(e) => handleTimeStart('18:00', e)}>18:00</button>
+                         <div className="create-task__item">
+                            <div className="component create-task__item create-task__timeStart">
+                                <input type="time" placeholder="Время старта" value={timeStart}
+                                    onChange={(e) => setTimeStart(e.target.value)} />
+                                <button onClick={(e) => handleTimeStart('currentTime', e)}>Сейчас</button>
+                                <div className="buttons-list">
+                                    <button onClick={(e) => handleTimeStart('00:00', e)}>0:00</button>
+                                    <button onClick={(e) => handleTimeStart('06:00', e)}>6:00</button>
+                                    <button onClick={(e) => handleTimeStart('09:00', e)}>9:00</button>
+                                    <button onClick={(e) => handleTimeStart('12:00', e)}>12:00</button>
+                                    <button onClick={(e) => handleTimeStart('16:00', e)}>16:00</button>
+                                    <button onClick={(e) => handleTimeStart('18:00', e)}>18:00</button>
+                                </div>
                             </div>
-                        </div>
+                            <button onClick={handleNextStep} className="button-default">Далее</button>
+                         </div>
                     )}
 
                     {currentStep === 3 && (
-                        <div className="create-task__item create-task__timePause">
-                            <input type="text" placeholder="Время паузы (в минутах)" value={timePause}
-                                onChange={(e) => setTimePause(e.target.value)} />
-                            <div className="buttons-list">
-                                <button onClick={(e) => handleTimePause('Без паузы', e)}>Без паузы</button>
-                                <button onClick={(e) => handleTimePause('Авто', e)}>Авто</button>
+                        <div className="create-task__item">
+                            <div className="component create-task__item create-task__timePause">
+                                <input type="text" placeholder="Время паузы (в минутах)" value={timePause}
+                                    onChange={(e) => setTimePause(e.target.value)} />
+                                <div className="buttons-list">
+                                    <button onClick={(e) => handleTimePause('Без паузы', e)}>Без паузы</button>
+                                    <button onClick={(e) => handleTimePause('Авто', e)}>Авто</button>
+                                </div>
                             </div>
+                            <button onClick={handleNextStep} className="button-default">Далее</button>
                         </div>
                     )}
 
                     {currentStep === 4 && (
-                        <div className="create-task__item create-task__timePause">
-                            <input type="text" placeholder="Дата старта" value={dateStart}
-                                onChange={(e) => setDateStart(e.target.value)} />
-                            <div className="buttons-list">
-                                <button onClick={(e) => handleDateStart('Сегодня', e)}>Сегодня</button>
-                                <button onClick={(e) => handleDateStart('Завтра', e)}>Завтра</button>
+                        <div className="create-task__item">
+                            <div className="component create-task__item create-task__timePause">
+                                <input type="text" placeholder="Дата старта" value={dateStart}
+                                    onChange={(e) => setDateStart(e.target.value)} />
+                                <div className="buttons-list">
+                                    <button onClick={(e) => handleDateStart('Сегодня', e)}>Сегодня</button>
+                                    <button onClick={(e) => handleDateStart('Завтра', e)}>Завтра</button>
+                                </div>
                             </div>
+                            <button onClick={handleNextStep} className="button-default">Далее</button>
                         </div>
                     )}
 
                     {currentStep === 5 && (
-                        <div className="create-task__item create-task__countDay">
-                            <input type="text" placeholder="Дата старта" value={countDay}
-                                onChange={(e) => setCountDay(e.target.value)} />
+                        <div className="create-task__item">
+                            <div className="component create-task__item create-task__countDay">
+                                <input type="text" placeholder="Дата старта" value={countDay}
+                                    onChange={(e) => setCountDay(e.target.value)} />
+                                <div className="buttons-list">
+                                    <button onClick={(e) => handleCountDay('7', e)}>7</button>
+                                    <button onClick={(e) => handleCountDay('15', e)}>15</button>
+                                    <button onClick={(e) => handleCountDay('30', e)}>30</button>
+                                </div>
+                            </div>
+                            <button onClick={handleNextStep} className="button-default">Далее</button>
+                        </div>
+                    )}
+
+                    {currentStep === 6 && (
+                        <div className="create-task__item create-task__confirmationData">
+                            <div className="component create-task__item">
+                                <div className="create-task__item-title">
+                                    <h2>Задача 1</h2>
+                                    <p>01.01.2024</p>
+                                </div>
+                                <div className="create-task__item-links__list">
+                                    <div>Мужская Куртка C.P company...</div>
+                                    <div>Мужская Куртка C.P company...</div>
+                                    <div>Мужская Куртка C.P company...</div>
+                                </div>
+                                <div className="create-task__item-parameters__list">
+                                    <div className="create-task__item-parameters__item">
+                                        <p>Количество ПФ</p>
+                                        <div className="line"></div>
+                                        <h3>30 ПФ</h3>
+                                    </div>
+                                    <div className="create-task__item-parameters__item">
+                                        <p>Время старта</p>
+                                        <div className="line"></div>
+                                        <h3>20:55</h3>
+                                    </div>
+                                    <div className="create-task__item-parameters__item">
+                                        <p>Пауза</p>
+                                        <div className="line"></div>
+                                        <h3>0 минут</h3>
+                                    </div>
+                                    <div className="create-task__item-parameters__item">
+                                        <p>Дата старта</p>
+                                        <div className="line"></div>
+                                        <h3>06.10.2024</h3>
+                                    </div>
+                                    <div className="create-task__item-parameters__item">
+                                        <p>Дней работы </p>
+                                        <div className="line"></div>
+                                        <h3>7</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 className="component">Итоговая цена: 6352 руб.</h2>
                             <div className="buttons-list">
-                                <button onClick={(e) => handleCountDay('7', e)}>7</button>
-                                <button onClick={(e) => handleCountDay('15', e)}>15</button>
-                                <button onClick={(e) => handleCountDay('30', e)}>30</button>
+                                <button className="button-default button-red">Принять</button>
+                                <button className="button-default">Отказаться</button>
                             </div>
                         </div>
                     )}
 
                 </form>
-                <button onClick={handleNextStep} className="button-default">Далее</button>
             </div>
         </div>
     );

@@ -4,16 +4,21 @@
     gap: var(--gap-big);
 }
 
-
 .create-task__progressbar {
     position: relative;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 14px 1fr 64px;
     /* display: flex;
     justify-content: space-between; */
     gap: var(--gap-small);
     align-items: center;
     border-radius: 40px;
+    padding: var(--padding-big) 0 var(--padding-big) var(--padding-big);
+}
+
+.create-task__progressbar h2 {
+    font-size: 20px;
+    text-align: center;
 }
 
 .create-task__progressbar * {
@@ -21,25 +26,26 @@
 }
 
 .CircularProgressbar-container {
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    position: absolute;
-    /* width: 100%; */
+    /* width: 69px; */
     height: 100%;
     top: 0;
     right: 0;
 }
 
-.CircularProgressbar  {
+.CircularProgressbar {
     position: relative;
-    /* top: 0; */
     right: 0;
-    /* width: auto; */
     height: 100%;
+    max-height: 69px;
     aspect-ratio: 1 / 1;
+    background-color: white;
+    border-radius: 100px;
 }
 
 .create-task__progressbar p {
@@ -55,6 +61,10 @@
     display: flex;
     flex-direction: column;
     gap: var(--gap-small);
+
+    animation: fade-in 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+    transform-origin: center center;
 }
 
 .create-task__links_list {
@@ -69,13 +79,13 @@
 }
 
 
-.buttons-list button{
+.buttons-list button {
     font-size: 14px;
     color: var(--main-color);
     padding: 0;
 }
 
-.create-task__countPF .buttons-list{
+.create-task__countPF .buttons-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
@@ -87,19 +97,79 @@
     gap: 10px;
 }
 
-.create-task__timeStart button{
+.create-task__timeStart button {
     font-size: 14px;
     color: var(--main-color);
 }
 
-.create-task__timePause .buttons-list{
+.create-task__timePause .buttons-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
 }
 
-.create-task__countDay .buttons-list{
+.create-task__countDay .buttons-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+}
+
+.create-task__item-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--gap-small);
+}
+
+.create-task__item-title p {
+    opacity: .5;
+}
+
+.create-task__item-links__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+}
+
+.create-task__item-links__list div {
+    background-color: var(--main-color);
+    color: white;
+    padding: 5px 15px;
+    border-radius: var(--border-radius-small);
+}
+
+.create-task__item-parameters__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+}
+
+.create-task__item-parameters__item {
+    display: grid;
+    align-items: baseline;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--gap-small);
+}
+
+.create-task__item-parameters__item div {
+    height: 1px;
+    border-radius: var(--border-radius-small);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.create-task__confirmationData .buttons-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap-small);
+}
+
+.create-task__confirmationData .buttons-list button {
+    color: white;
+    font-size: 24px;
+}
+
+@media(max-width:300px) {
+    .create-task__confirmationData .buttons-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
