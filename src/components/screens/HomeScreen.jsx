@@ -12,9 +12,9 @@ function HomeScreen() {
 
 
   return (
-    <div className="container">
+    <div>
       <Header/>
-      <div className="home-list">
+      <div className="container home-list">
         <Link to="/create-task" className="component home-item">
           <h2>Создать задачу</h2>
           <svg width="14" height="23" viewBox="0 0 14 23" fill="none" xmlns="http://www.w3.org/2000/svg">
