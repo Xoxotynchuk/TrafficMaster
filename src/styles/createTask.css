@@ -131,7 +131,11 @@
     gap: var(--gap-small);
 }
 
-.create-task__item-links__list div {
+.create-task__item-links__list a {
+    display: flex;
+    gap: var(--gap-small);
+    justify-content: space-between;
+    align-items: center;
     background-color: var(--main-color);
     color: white;
     padding: 5px 15px;

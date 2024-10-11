@@ -11,9 +11,10 @@ function CreateTaskScreen() {
     const { setStatus } = useContext(GlobalContext);
 
     const [currentStep, setCurrentStep] = useState(0);
+    const [links, setLinks] = useState([]);
+    const [firstLink, setFirstLink] = useState("");
     const [pfCount, setPfCount] = useState("");
     const [timeStart, setTimeStart] = useState("");
-    const [links, setLinks] = useState([]);
 
     const [timePause, setTimePause] = useState("");
     const [dateStart, setDateStart] = useState("");
@@ -64,9 +65,24 @@ function CreateTaskScreen() {
     // Следующая страница
     const handleNextStep = (e) => {
         e.preventDefault()
-        if (currentStep <= 5) {
-            setCurrentStep(currentStep + 1);
+        const inputs = document.querySelectorAll('input');
+        let allInputsFilled = true;
+
+        inputs.forEach(element => {
+            if (!element.value.trim()) {
+                allInputsFilled = false;
+                return; // Выходим из цикла, если хотя бы один инпут пустой
+            }
+        });
+
+        if (allInputsFilled) {
+            if (currentStep <= 5) {
+                setCurrentStep(currentStep + 1);
+            }
+        } else {
+            alert("Заполни все инпуты");
         }
+
     };
 
     // Предыдущая страница
@@ -92,6 +108,13 @@ function CreateTaskScreen() {
         setLinks(newLinks);
     };
 
+    // Получение значения первой ссылки
+    const handleFirstLinkChange = () => {
+        const firstLink = document.querySelector('input[name="firstLink"]').value
+        console.log(firstLink);
+        setFirstLink(firstLink);
+    };
+
     // Удаление инпутов
     const handleRemoveLink = (index) => {
         const newLinks = [...links];
@@ -99,6 +122,8 @@ function CreateTaskScreen() {
         setLinks(newLinks);
     };
 
+
+    // Полоска прогрессбара
     let percentage = 0;
 
     if (currentStep === 0) {
@@ -121,6 +146,20 @@ function CreateTaskScreen() {
     }
     if (currentStep === 6) {
         percentage = 100
+    }
+
+    // Отправка формы
+    const submitForm = (e) => {
+        e.preventDefault()
+        const data = {
+            pfCount: pfCount,
+            links: links.concat(firstLink),
+            timeStart: timeStart,
+            timePause: timePause,
+            dateStart: dateStart,
+            countDay: countDay
+        }
+        console.log(data);
     }
 
     return (
@@ -181,9 +220,9 @@ function CreateTaskScreen() {
                             <div className="component create-task__item create-task__links">
                                 <p>Вставьте ссылки на объявления (до 10)</p>
                                 <div className="create-task__links_list">
-                                    <input type="text" placeholder="Ссылка" />
+                                    <input type="text" placeholder="Ссылка" name="firstLink" value={firstLink} onChange={handleFirstLinkChange} />
                                     {links.map((link, index) => (
-                                        <div id={index} className="input-double">
+                                        <div key={index} className="input-double">
                                             <input
                                                 type="text"
                                                 placeholder="Ссылка"
@@ -228,7 +267,7 @@ function CreateTaskScreen() {
                     )}
 
                     {currentStep === 2 && (
-                         <div className="create-task__item">
+                        <div className="create-task__item">
                             <div className="component create-task__item create-task__timeStart">
                                 <input type="time" placeholder="Время старта" value={timeStart}
                                     onChange={(e) => setTimeStart(e.target.value)} />
@@ -243,7 +282,7 @@ function CreateTaskScreen() {
                                 </div>
                             </div>
                             <button onClick={handleNextStep} className="button-default">Далее</button>
-                         </div>
+                        </div>
                     )}
 
                     {currentStep === 3 && (
@@ -297,42 +336,53 @@ function CreateTaskScreen() {
                                     <p>01.01.2024</p>
                                 </div>
                                 <div className="create-task__item-links__list">
-                                    <div>Мужская Куртка C.P company...</div>
-                                    <div>Мужская Куртка C.P company...</div>
-                                    <div>Мужская Куртка C.P company...</div>
+                                    <a href="https://www.avito.ru/sankt-peterburg/posuda_i_tovary_dlya_kuhni/kruzhka_pivnaya_0.5l_sssr_4316649957">
+                                        {firstLink}
+                                        <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.974971 0.264138C0.796124 0.433317 0.695654 0.662742 0.695654 0.901961C0.695654 1.14118 0.796124 1.37061 0.974971 1.53978L5.69726 6.00545L0.974971 10.4711C0.801193 10.6413 0.705035 10.8691 0.707209 11.1057C0.709382 11.3422 0.809713 11.5685 0.986592 11.7358C1.16347 11.903 1.40274 11.9979 1.65288 12C1.90301 12.002 2.144 11.9111 2.32392 11.7468L7.72068 6.64327C7.89953 6.47409 8 6.24467 8 6.00545C8 5.76623 7.89953 5.5368 7.72068 5.36762L2.32392 0.264138C2.14502 0.0950105 1.90241 -2.66534e-07 1.64945 -2.77591e-07C1.39648 -2.88649e-07 1.15387 0.0950104 0.974971 0.264138Z" fill="white" />
+                                        </svg>
+                                    </a>
+                                    {links.map((item) => (
+                                        <a href="https://www.avito.ru/sankt-peterburg/posuda_i_tovary_dlya_kuhni/kruzhka_pivnaya_0.5l_sssr_4316649957">
+                                            {item}
+                                            <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0.974971 0.264138C0.796124 0.433317 0.695654 0.662742 0.695654 0.901961C0.695654 1.14118 0.796124 1.37061 0.974971 1.53978L5.69726 6.00545L0.974971 10.4711C0.801193 10.6413 0.705035 10.8691 0.707209 11.1057C0.709382 11.3422 0.809713 11.5685 0.986592 11.7358C1.16347 11.903 1.40274 11.9979 1.65288 12C1.90301 12.002 2.144 11.9111 2.32392 11.7468L7.72068 6.64327C7.89953 6.47409 8 6.24467 8 6.00545C8 5.76623 7.89953 5.5368 7.72068 5.36762L2.32392 0.264138C2.14502 0.0950105 1.90241 -2.66534e-07 1.64945 -2.77591e-07C1.39648 -2.88649e-07 1.15387 0.0950104 0.974971 0.264138Z" fill="white" />
+                                            </svg>
+                                        </a>
+                                    ))}
                                 </div>
                                 <div className="create-task__item-parameters__list">
                                     <div className="create-task__item-parameters__item">
                                         <p>Количество ПФ</p>
                                         <div className="line"></div>
-                                        <h3>30 ПФ</h3>
+                                        <h3>{pfCount} ПФ</h3>
                                     </div>
                                     <div className="create-task__item-parameters__item">
                                         <p>Время старта</p>
                                         <div className="line"></div>
-                                        <h3>20:55</h3>
+                                        <h3>{timeStart}</h3>
                                     </div>
                                     <div className="create-task__item-parameters__item">
                                         <p>Пауза</p>
                                         <div className="line"></div>
-                                        <h3>0 минут</h3>
+                                        <h3>{timePause}</h3>
                                     </div>
                                     <div className="create-task__item-parameters__item">
                                         <p>Дата старта</p>
                                         <div className="line"></div>
-                                        <h3>06.10.2024</h3>
+                                        <h3>{dateStart}</h3>
                                     </div>
                                     <div className="create-task__item-parameters__item">
                                         <p>Дней работы </p>
                                         <div className="line"></div>
-                                        <h3>7</h3>
+                                        <h3>{countDay}</h3>
                                     </div>
                                 </div>
                             </div>
                             <h2 className="component">Итоговая цена: 6352 руб.</h2>
                             <div className="buttons-list">
-                                <button className="button-default button-red">Принять</button>
-                                <button className="button-default">Отказаться</button>
+                                <button className="button-default" onClick={submitForm}>Принять</button>
+                                <button className="button-default button-red">Отказаться</button>
                             </div>
                         </div>
                     )}
