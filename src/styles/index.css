@@ -36,13 +36,16 @@
 }
 
 html {
-  height: 100%;
+  min-height: 100%;
   scroll-behavior: smooth;
-  background-color: #F8F8F8;
 }
 
 body {
+  min-height: 100%;
   user-select: none;
+  background-color: light-dark(var(--body-color-light), var(--body-color-dark));
+  /* background-color: #F8F8F8; */
+  -webkit-text-size-adjust: none;
 }
 
 a {
@@ -60,17 +63,44 @@ label input {
   width: 100%;
 }
 
-input[type=time] {
+input[type=time], input[type=date] {
+  -webkit-appearance: none;
+  text-align: center;
   width: 100%;
+  background: transparent;
+  color: black;
 }
 
-input {
+input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: var(--border-solid-accent);
+  height: 15px;
+  border-radius: var(--border-radius-small);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  position: relative;
+  appearance: none;
+  background-color: var(--main-color);
+  height: 25px;
+  width: 25px;   
+  border-radius: var(--border-radius-small);  
+  box-shadow: none;
+}
+
+input:not(input[type="range"]) {
   width: 100%;
   padding: var(--padding-small);
   border: var(--border-solid-accent-second);
   border-radius: var(--border-radius-small);
   outline: none;
   height: 45px;
+  color: light-dark(var(--body-color-dark), var(--body-color-light));
+  background-color: light-dark(var(--body-color-light), var(--body-color-dark));
 }
 
 button {
@@ -104,8 +134,9 @@ button svg {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
+  margin: 0 auto;
   /* padding: 5px; */
   border-radius: var(--border-radius-small);
   border: var(--border-solid-accent-second);
@@ -123,13 +154,11 @@ button svg {
 
 }
 h1 {
-  /* color: white; */
   text-align: center;
   font-size: 36px;
 }
 
 h2 {
-  /* color: white; */
   font-size: 24px;
   font-weight: 500;
 }
@@ -161,7 +190,7 @@ h3 {
 }
 
 .component {
-  background-color: var(--component-color);
+  background-color: light-dark(var(--component-color-light), var(--component-colo-dark));
   box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.10);
   padding: var(--padding-big);
   border-radius: var(--border-radius-big);

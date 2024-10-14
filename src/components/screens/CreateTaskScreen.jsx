@@ -1,14 +1,13 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "../store/GlobalContext";
 import Header from "../Header";
-import { Link } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
 
 function CreateTaskScreen() {
     // const [currentForm, setCurrentForm] = useState("");
 
-    const { setStatus } = useContext(GlobalContext);
+    // const { setStatus } = useContext(GlobalContext);
 
     const [currentStep, setCurrentStep] = useState(0);
     const [links, setLinks] = useState([]);
@@ -20,6 +19,13 @@ function CreateTaskScreen() {
     const [dateStart, setDateStart] = useState("");
     const [countDay, setCountDay] = useState("");
 
+    // Ползунок
+    const [contacts, setContacts] = useState(100);
+
+    const handleRangeChange = (e) => {
+        setContacts(e.target.value);
+    };
+
 
     // Быстрый доступ к кол-ву ПФ
     const handlePfCountClick = (count, e) => {
@@ -30,7 +36,18 @@ function CreateTaskScreen() {
     // Быстрый доступ к дате старта
     const handleDateStart = (count, e) => {
         e.preventDefault()
-        setDateStart(count);
+        if (count === "Сегодня") {
+            const today = new Date();
+            const formattedDate = today.toISOString().slice(0, 10);
+            setDateStart(formattedDate)
+        }
+        if (count === "Завтра") {
+            const today = new Date();
+            const tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
+            const formattedDate = tomorrow.toISOString().slice(0, 10);
+            setDateStart(formattedDate)
+        }
+        // setDateStart(count);
     };
 
     // Быстрый доступ к количеству дней накрутки
@@ -76,7 +93,7 @@ function CreateTaskScreen() {
         });
 
         if (allInputsFilled) {
-            if (currentStep <= 5) {
+            if (currentStep <= 6) {
                 setCurrentStep(currentStep + 1);
             }
         } else {
@@ -111,7 +128,6 @@ function CreateTaskScreen() {
     // Получение значения первой ссылки
     const handleFirstLinkChange = () => {
         const firstLink = document.querySelector('input[name="firstLink"]').value
-        console.log(firstLink);
         setFirstLink(firstLink);
     };
 
@@ -122,29 +138,31 @@ function CreateTaskScreen() {
         setLinks(newLinks);
     };
 
-
     // Полоска прогрессбара
     let percentage = 0;
 
     if (currentStep === 0) {
-        percentage = 14.28
+        percentage = 12.5
     }
     if (currentStep === 1) {
-        percentage = 28.56
+        percentage = 25
     }
     if (currentStep === 2) {
-        percentage = 42.84
+        percentage = 37.5
     }
     if (currentStep === 3) {
-        percentage = 57.12
+        percentage = 50
     }
     if (currentStep === 4) {
-        percentage = 71.4
+        percentage = 62.5
     }
     if (currentStep === 5) {
-        percentage = 85.68
+        percentage = 75
     }
     if (currentStep === 6) {
+        percentage = 87.5
+    }
+    if (currentStep === 7) {
         percentage = 100
     }
 
@@ -153,6 +171,7 @@ function CreateTaskScreen() {
         e.preventDefault()
         const data = {
             pfCount: pfCount,
+            contacts: contacts,
             links: links.concat(firstLink),
             timeStart: timeStart,
             timePause: timePause,
@@ -182,18 +201,21 @@ function CreateTaskScreen() {
                         <h2>Количество ПФ</h2>
                     )}
                     {currentStep === 2 && (
-                        <h2>Время старта</h2>
+                        <h2>Процент контактов</h2>
                     )}
                     {currentStep === 3 && (
-                        <h2>Время паузы</h2>
+                        <h2>Время старта</h2>
                     )}
                     {currentStep === 4 && (
-                        <h2>Дата старта</h2>
+                        <h2>Время паузы</h2>
                     )}
                     {currentStep === 5 && (
-                        <h2>Кол-во дней накрутки</h2>
+                        <h2>Дата старта</h2>
                     )}
                     {currentStep === 6 && (
+                        <h2>Кол-во дней накрутки</h2>
+                    )}
+                    {currentStep === 7 && (
                         <h2>Подтверждение данных</h2>
                     )}
 
@@ -209,7 +231,7 @@ function CreateTaskScreen() {
                             })}
                         />
                         <div>
-                            <p>{currentStep + 1} / 7</p>
+                            <p>{currentStep + 1} / 8</p>
                         </div>
                     </div>
 
@@ -268,6 +290,30 @@ function CreateTaskScreen() {
 
                     {currentStep === 2 && (
                         <div className="create-task__item">
+                            <div className="component create-task__item create-task__countPF">
+                                <p>Процент контактов (рекомендуем 100%)</p>
+                                <div>
+                                    <input
+                                        type="range"
+                                        min="0"
+                                        max="100"
+                                        value={contacts}
+                                        step="1"
+                                        onChange={handleRangeChange}
+                                    />
+                                </div>
+                                <div className="range-text">
+                                    <p>0%</p>
+                                    <h2>{contacts}%</h2>
+                                    <p>100%</p>
+                                </div>
+                            </div>
+                            <button onClick={handleNextStep} className="button-default">Далее</button>
+                        </div>
+                    )}
+
+                    {currentStep === 3 && (
+                        <div className="create-task__item">
                             <div className="component create-task__item create-task__timeStart">
                                 <input type="time" placeholder="Время старта" value={timeStart}
                                     onChange={(e) => setTimeStart(e.target.value)} />
@@ -285,7 +331,7 @@ function CreateTaskScreen() {
                         </div>
                     )}
 
-                    {currentStep === 3 && (
+                    {currentStep === 4 && (
                         <div className="create-task__item">
                             <div className="component create-task__item create-task__timePause">
                                 <input type="text" placeholder="Время паузы (в минутах)" value={timePause}
@@ -299,10 +345,10 @@ function CreateTaskScreen() {
                         </div>
                     )}
 
-                    {currentStep === 4 && (
+                    {currentStep === 5 && (
                         <div className="create-task__item">
                             <div className="component create-task__item create-task__timePause">
-                                <input type="text" placeholder="Дата старта" value={dateStart}
+                                <input type="date" placeholder="Дата старта" value={dateStart}
                                     onChange={(e) => setDateStart(e.target.value)} />
                                 <div className="buttons-list">
                                     <button onClick={(e) => handleDateStart('Сегодня', e)}>Сегодня</button>
@@ -313,7 +359,7 @@ function CreateTaskScreen() {
                         </div>
                     )}
 
-                    {currentStep === 5 && (
+                    {currentStep === 6 && (
                         <div className="create-task__item">
                             <div className="component create-task__item create-task__countDay">
                                 <input type="text" placeholder="Дата старта" value={countDay}
@@ -328,7 +374,7 @@ function CreateTaskScreen() {
                         </div>
                     )}
 
-                    {currentStep === 6 && (
+                    {currentStep === 7 && (
                         <div className="create-task__item create-task__confirmationData">
                             <div className="component create-task__item">
                                 <div className="create-task__item-title">
@@ -356,6 +402,11 @@ function CreateTaskScreen() {
                                         <p>Количество ПФ</p>
                                         <div className="line"></div>
                                         <h3>{pfCount} ПФ</h3>
+                                    </div>
+                                    <div className="create-task__item-parameters__item">
+                                        <p>Процент контактов</p>
+                                        <div className="line"></div>
+                                        <h3>{contacts}%</h3>
                                     </div>
                                     <div className="create-task__item-parameters__item">
                                         <p>Время старта</p>
