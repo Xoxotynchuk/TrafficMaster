@@ -163,6 +163,11 @@ h2 {
   font-weight: 500;
 }
 
+.component h2, .home-list svg path{
+  color: light-dark(var(--body-color-dark), var(--body-color-light));
+  fill: light-dark(var(--body-color-dark), var(--body-color-light));
+}
+
 h3 {
   font-size: 20px;
   font-weight: 500;
